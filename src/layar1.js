@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View,Image,TouchableOpacity,TextInput,FlatList} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import flalistData from '../src/flatlistData';
+import {StackNavigator} from 'react-navigation';
 
 
 const App = () => {
@@ -21,14 +21,39 @@ const App = () => {
         <Text style={styles.text2}>Popular places</Text>
         <View style={styles.container}>
       <FlatList
+         renderItem={({item}) => 
+         <View>
+         <Image source={item.src}style={styles.img1}/>
+         <View style={{flex:1}}>
+         <Text style={styles.item}>{item.key}</Text>
+         <Text style={styles.harga}>{item.harga}</Text>
+         </View> 
+         </View>
+       }
         data={[
-          {key: 'Zenith Tennis Center',harga: '$15 per hour'},
-          {key: 'Lacoste Club',harga:'$25 per hour'},
-          {key: 'Hatch End',harga:'$20 per hour'},
+          {
+            key: 'Zenith Tennis Center',
+            harga: '$15 per hour',
+            src:require('../src/gambar/tenis1.png')
+          },
+          {
+            key: 'Lacoste Club',
+            harga:'$25 per hour',
+            src:require('../src/gambar/lacoste.png')
+          },
+          {
+            key: 'Hatch End',
+            harga:'$20 per hour',
+            src:require('../src/gambar/gambar1.png')
+          },
         ]}
-        renderItem={({item}) => 
-        <Text style={styles.item}>{item.key}</Text>}
+       
       /> 
+      <View>
+        <Image 
+        style={styles.img3}
+        source={require('../src/gambar/Vektor.png')}/>
+      </View>
     </View>
         
 
@@ -78,7 +103,8 @@ const styles = StyleSheet.create({
     fontFamily:'Poppins-Bold',
     marginTop:40,
     marginLeft:20,
-    fontSize:20,
+    fontSize:24,
+    fontFamily:'Poppins-Medium',
   },
   icon1:{
       position:'absolute',
@@ -86,5 +112,31 @@ const styles = StyleSheet.create({
       marginTop:24,
       marginLeft:10,
   
-  }
+  },
+  item:{
+    marginLeft:100,
+    marginTop:35,
+    fontSize:18,
+    
+    
+  },
+  harga:{
+    marginLeft:100,
+    color:'grey',
+  },
+  img3:{
+    marginLeft:270,
+    marginBottom:50,
+    width:40,
+    height:40,
+    borderRadius:8,
+  },
+  img1:{
+    marginLeft:20,
+    resizeMode:'cover',
+    marginTop:40,
+    position:'absolute',
+    width:40,
+    height:40,
+  },
 })
