@@ -1,10 +1,11 @@
 import React from 'react'
 import { StyleSheet, Text, View,Image,TouchableOpacity,TextInput,FlatList} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {StackNavigator} from 'react-navigation';
+import{createStackNavigator} from'@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
 
 
-const App = () => {
+export default function App  ({navigation}) {
   return (
     <View style={styles.container}>
       <Image 
@@ -25,7 +26,7 @@ const App = () => {
          <View>
          <Image source={item.src}style={styles.img1}/>
          <View style={{flex:1}}>
-         <Text style={styles.item}>{item.key}</Text>
+         <Text style={styles.item} onPress={()=> navigation.navigate('dua',item.key)}>{item.key} </Text>
          <Text style={styles.harga}>{item.harga}</Text>
          </View> 
          </View>
@@ -34,7 +35,7 @@ const App = () => {
           {
             key: 'Zenith Tennis Center',
             harga: '$15 per hour',
-            src:require('../src/gambar/tenis1.png')
+            src:require('../src/gambar/tenis.png')
           },
           {
             key: 'Lacoste Club',
@@ -52,7 +53,7 @@ const App = () => {
       <View>
         <Image 
         style={styles.img3}
-        source={require('../src/gambar/Vektor.png')}/>
+        source={require('../src/gambar/Vektor.png')}/> 
       </View>
     </View>
         
@@ -61,7 +62,6 @@ const App = () => {
   )
 }
 
-export default App
 
 const styles = StyleSheet.create({
   container:{
